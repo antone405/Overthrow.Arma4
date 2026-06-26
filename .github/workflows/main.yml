@@ -21,15 +21,15 @@ jobs:
     - name: Compile and Package Mod
       shell: pwsh
       run: |
-        # 1. Create a workspace output directory completely outside of the repository root
-        New-Item -ItemType Directory -Force -Path "..\build_output"
+        # 1. Create the build directory inside the workspace root
+        New-Item -ItemType Directory -Force -Path ".\build_output"
         
-        # 2. Compress the root repository folder, but specifically exclude the .git metadata
-        Compress-Archive -Path ".\*" -DestinationPath "..\build_output\Overthrow_Custom_Build.zip"
+        # 2. Grab everything *except* the build folder and git metadata, and zip it
+        Get-ChildItem -Path ".\" -Exclude "build_output", ".git*" | Compress-Archive -DestinationPath ".\build_output\Overthrow_Custom_Build.zip"
 
     - name: Upload Build Artifact
       uses: actions/upload-artifact@v4
       with:
         name: custom-overthrow-package
-        # 3. Pull the artifact from the clean external directory
-        path: ..\build_output\
+        # 3. Use a clean, allowed relative path
+        path: ./build_output/
