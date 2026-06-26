@@ -2,9 +2,9 @@ name: Build Custom Overthrow Mod
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "Patch-1" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "Patch-1" ]
   workflow_dispatch: # Allows you to manually trigger the build from the GitHub UI
 
 jobs:
