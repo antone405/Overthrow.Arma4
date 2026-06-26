@@ -31,7 +31,7 @@ jobs:
         
         # Alternative for script-only quick deployments:
         # Zip the raw addon directory structure directly if you are manually handling the .gproj
-        Compress-Archive -Path ".\*" -DestinationPath ".\build\Overthrow_Custom_Build.zip" -Exclude ".github*"
+        Compress-Archive -Path ".\*" -DestinationPath ".\build\Overthrow_Custom_Build.zip"
 
     - name: Upload Build Artifact
       uses: actions/upload-artifact@v4
